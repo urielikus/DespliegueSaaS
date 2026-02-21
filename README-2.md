@@ -1,5 +1,7 @@
 Despliegue de SaaS en Azure
+
 Jose Uriel Villalobos Medina
+
 Tarea de Cómputo en la Nube  
 Tecnología: Node.js + Express  
 Servidor: Máquina Virtual en Microsoft Azure
@@ -32,7 +34,7 @@ Acceso SSH a la VM. Para conectarse: ssh usuario@IP_DE_LA_VM
 
 ---
 
-## Paso 1 - Configurar la VM en Azure
+## 1 - Configurar la VM en Azure
 
 a).- Conectarse a la VM por SSH
 
@@ -57,7 +59,7 @@ Entrar al Portal de Azure, seleccionar la máquina virtual, ir a la sección Red
 
 ---
 
-##  Paso 2 - Subir el código a la VM
+##  2 - Subir el código a la VM
 
 Usar Git
 
@@ -72,7 +74,7 @@ Luego en la VM:
 
 ---
 
-## Paso 3 - Configurar las variables de entorno
+## 3 - Configurar las variables de entorno
 
 Este es el punto central de la práctica. En lugar de escribir el mensaje directamente en el código, se define como una variable del sistema operativo y la aplicación la lee en tiempo de ejecución.
 
@@ -89,7 +91,7 @@ Para verificar que quedaron correctamente definidas:
 
 ---
 
-## Paso 4 - Ejecutar la aplicación
+## 4 - Ejecutar la aplicación
 
 Forma básica (se detiene al cerrar la terminal):
 
@@ -111,7 +113,7 @@ Comandos útiles de PM2:
 
 ---
 
-## Paso 5 - Acceder a la aplicación
+## 5 - Acceder a la aplicación
 
 Abrir el navegador y visitar:
 
