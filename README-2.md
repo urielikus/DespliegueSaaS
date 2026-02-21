@@ -1,5 +1,5 @@
 Despliegue de SaaS en Azure
-
+Jose Uriel Villalobos Medina
 Tarea de Cómputo en la Nube  
 Tecnología: Node.js + Express  
 Servidor: Máquina Virtual en Microsoft Azure
@@ -24,7 +24,7 @@ Esta aplicación web básica levanta un servidor HTTP en el puerto 3000 y lee un
 
 ---
 
-## Requisitos previos
+## Requisitos
 
 Node.js v18 o superior. Para verificar: node --version  
 npm v8 o superior. Para verificar: npm --version  
@@ -32,15 +32,15 @@ Acceso SSH a la VM. Para conectarse: ssh usuario@IP_DE_LA_VM
 
 ---
 
-## Parte 1 - Configurar la VM en Azure
+## Paso 1 - Configurar la VM en Azure
 
-Paso 1: Conectarse a la VM por SSH
+a).- Conectarse a la VM por SSH
 
 Desde la terminal del equipo local ejecutar:
 
     ssh -i ~/.ssh/llave.pem azureuser@IP_DE_LA_VM
 
-Paso 2: Instalar Node.js en la VM
+b): Instalar Node.js en la VM
 
     sudo apt update
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -51,23 +51,19 @@ Verificar que se instaló correctamente:
     node --version
     npm --version
 
-Paso 3: Abrir el puerto 3000 en Azure
+c): Abrir el puerto 3000 en Azure
 
 Entrar al Portal de Azure, seleccionar la máquina virtual, ir a la sección Redes y agregar una regla de puerto de entrada con los siguientes valores: puerto 3000, protocolo TCP.
 
 ---
 
-## Parte 2 - Subir el código a la VM
+##  Paso 2 - Subir el código a la VM
 
-Opción A: Usando Git
+Usar Git
 
     git clone https://gitlab.com/usuario/despliegue-de-saas.git
     cd despliegue-de-saas
     npm install
-
-Opción B: Copiando archivos con SCP desde el equipo local
-
-    scp -r ./saas-app azureuser@IP_DE_LA_VM:~/saas-app
 
 Luego en la VM:
 
@@ -76,7 +72,7 @@ Luego en la VM:
 
 ---
 
-## Parte 3 - Configurar las variables de entorno
+## Paso 3 - Configurar las variables de entorno
 
 Este es el punto central de la práctica. En lugar de escribir el mensaje directamente en el código, se define como una variable del sistema operativo y la aplicación la lee en tiempo de ejecución.
 
@@ -93,7 +89,7 @@ Para verificar que quedaron correctamente definidas:
 
 ---
 
-## Parte 4 - Ejecutar la aplicación
+## Paso 4 - Ejecutar la aplicación
 
 Forma básica (se detiene al cerrar la terminal):
 
@@ -115,7 +111,7 @@ Comandos útiles de PM2:
 
 ---
 
-## Parte 5 - Acceder a la aplicación
+## Paso 5 - Acceder a la aplicación
 
 Abrir el navegador y visitar:
 
@@ -136,7 +132,7 @@ Esta es la ventaja principal de usar variables de entorno. Para actualizar el me
     pm2 restart saas-app
 
 El nuevo mensaje aparecerá en pantalla sin haber tocado el código fuente.
-
+ø
 ---
 
 ## Variables de entorno disponibles
@@ -147,12 +143,3 @@ PORT - Puerto del servidor. Default: 3000.
 
 ---
 
-## Solución de problemas comunes
-
-Error "Cannot find module 'express'": ejecutar npm install
-
-Error "EADDRINUSE address already in use 3000": ejecutar sudo lsof -i :3000 para ver qué proceso ocupa el puerto, luego sudo kill -9 con el PID que aparezca.
-
-No se puede acceder desde el navegador: verificar que el puerto 3000 esté abierto en las reglas de red de Azure, que la aplicación esté corriendo con pm2 status, y que se esté usando http:// y no https://.
-
-La variable de entorno sale vacía: ejecutar source ~/.bashrc y luego pm2 restart saas-app.
