@@ -69,10 +69,10 @@ app.get('/', (req, res) => {
     </head>
     <body>
       <div class="card">
-        <span class="badge">☁️ Desplegado en Azure</span>
+        <span class="badge"> Desplegado en Azure</span>
         <h1>Mi Aplicación SaaS</h1>
         <div class="mensaje">
-          💬 ${mensaje}
+           ${mensaje}
         </div>
         <p class="autor">— ${autor}</p>
         <div class="env-info">
@@ -90,7 +90,7 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Servidor corriendo en el puerto ${PORT}`);
-  console.log(`📦 Mensaje: ${mensaje}`);
-  console.log(`👤 Autor: ${autor}`);
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
+  console.log(`Mensaje: ${mensaje}`);
+  console.log(`Autor: ${autor}`);
 });
